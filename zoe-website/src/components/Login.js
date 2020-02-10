@@ -27,7 +27,7 @@ const Login = props => {
           required
           type="text"
           name="username"
-          placeholder="username"
+          placeholder="Username"
           value={loginInfo.username}
           onChange={handleChange}
         />
@@ -38,7 +38,7 @@ const Login = props => {
           required
           type="password"
           name="password"
-          placeholder="password"
+          placeholder="Password"
           value={loginInfo.password}
           onChange={handleChange}
         />

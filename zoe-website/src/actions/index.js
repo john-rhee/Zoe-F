@@ -12,7 +12,7 @@ export const login = loginData => dispatch => {
     dispatch({ type: USER_LOGING_IN });
   
     axiosWithAuth()
-      .post('/api/server/login', loginData)
+      .post('/user/login', loginData)
       .then(response =>
         dispatch(
           { type: USER_LOGING_IN_SUCCESS, payload: response.data },
@@ -32,7 +32,7 @@ export const signUp = signUpData => dispatch => {
     dispatch({ type: USER_SIGNING });
   
     axiosWithAuth()
-      .post('/api/server/register ', signUpData)
+      .post('/user/register ', signUpData)
       .then(response =>
         dispatch(
           { type: USER_SIGNING_SUCCESS, payload: response.data.user },
@@ -42,4 +42,23 @@ export const signUp = signUpData => dispatch => {
       .catch(err =>
         dispatch({ type: USER_SIGNING_FAILURE, payload: err.response })
       );
+};
+
+export const PIC_POSTING = "PIC_POSTING";
+export const PIC_POSTING_SUCCESS = "PIC_POSTING_SUCCESS";
+export const PIC_POSTING_FAILURE = "PIC_POSTING_FAILURE";
+
+export const uploadPic = picData => dispatch => {
+  dispatch({ type: PIC_POSTING });
+
+  axios()
+    .post('/picture/upload', picData )
+    .then(response =>
+      dispatch(
+        { type: USER_LOGING_IN_SUCCESS, payload: response.path }
+      )
+    )
+    .catch(err =>
+      dispatch({ type: USER_LOGING_IN_FAILURE, payload: err.response })
+    );
 };

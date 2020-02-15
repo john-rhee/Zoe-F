@@ -9,7 +9,7 @@ const Login = props => {
     event.preventDefault();
     props.login(loginInfo);
     // .then(() => props.history.push('/'))
-    props.history.push("/");
+    props.history.push("/home");
     setLogininfo({ username: "", password: "" });
   };
 

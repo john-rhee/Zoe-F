@@ -21,7 +21,7 @@ const Nav = props => {
       <div className="menu-list" id="nav">
         {localStorage.getItem("token") ? (
           <div>
-            <NavLink to="/" >
+            <NavLink to="/home" >
               Home
             </NavLink>
             {/* <p>{props.userData.username}</p> */}
@@ -30,7 +30,7 @@ const Nav = props => {
         ) : (
           <div>
 
-            <NavLink to="/">
+            <NavLink to="/home">
               {" "}
               Home{" "}
             </NavLink>

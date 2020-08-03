@@ -1,61 +1,66 @@
-import React, { useState } from "react";
-import { login } from "../actions/index";
-import { connect } from "react-redux";
+import React, { useContext, useState, useEffect } from 'react';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from "axios";
+import WunderContext from '../contexts/WunderContext';
 
-const Login = props => {
-  const [loginInfo, setLogininfo] = useState({ username: "", password: "" });
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    props.login(loginInfo);
-    // .then(() => props.history.push('/'))
-    props.history.push("/home");
-    setLogininfo({ username: "", password: "" });
-  };
+const Login = props =>{
 
-  const handleChange = event => {
-    setLogininfo({ ...loginInfo, [event.target.name]: event.target.value });
-  };
+  const {mainForm, setMainForm} = useContext(WunderContext);  
+
+  const [state, setState] = useState({
+    credentials: {
+      username: '',
+      password: ''
+    },
+    isLoggedIn: false
+  });  
+
+  const handleChange = e => {
+      setState({
+        credentials: {
+          ...state.credentials,
+          [e.target.name]: e.target.value
+        }
+      });
+    };
+
+  const loginEvent = event => {
+      event.preventDefault();
+      axios.post('https://zoe-backend.herokuapp.com/users/login', state.credentials)
+      .then(response => {
+          console.log(response);
+          const { data } = response;
+
+          localStorage.setItem("token", data.token);
+          setState({ ...state, isLoggedIn: true });
+
+          axiosWithAuth()
+          .get('https://zoe-backend.herokuapp.com/todo/')
+          .then(response => {
+            setMainForm(response.data)});
+
+          props.history.push('/lists');
+      })
+  }
 
   return (
-    <div className="login-component">
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        {/* <label>Email</label> */}
-        <br />
-        <input
-          required
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={loginInfo.username}
-          onChange={handleChange}
-        />
-        <br />
-        {/* <label>Password</label> */}
-        <br />
-        <input
-          required
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={loginInfo.password}
-          onChange={handleChange}
-        />
-        <br />
-        <button type="submit" className="next-button">
-          Log In
-        </button>
-      </form>
+    <div>
+
+      <form onSubmit={loginEvent}>
+        <h2>{state.isLoggedIn ? "Logged In" : "Please login"}</h2>
+        
+                <input type="text" name="username" id="username" placeholder="Username" value={state.credentials.username} onChange={handleChange} />
+            
+                <input type="password" name="password" id="password" placeholder="Password" value={state.credentials.password} onChange={handleChange} />
+            
+                <button type="submit">Log In</button>
+            
+        </form>
 
     </div>
   );
-};
 
-const mapStateToProps = state => {
-  return {
-    userData: state.userData
-  };
-};
+}  
 
-export default connect(mapStateToProps, { login })(Login);
+export default Login;

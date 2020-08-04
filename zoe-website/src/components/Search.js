@@ -19,7 +19,7 @@ function Search() {
 
     useEffect(() => {
     const results = mainForm.filter(dataObject =>
-        dataObject.title.toLowerCase().includes(searchTerm.toLowerCase())
+        dataObject.name.toLowerCase().includes(searchTerm.toLowerCase())
         );  
     setSearchResults(results)
     }, [searchTerm]);

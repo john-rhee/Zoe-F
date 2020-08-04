@@ -12,29 +12,9 @@ import PrivateRoute from "./components/PrivateRoute";
 
 
 function App() {
-  // These two lines are to toggle the Menu options
-  const [isOpen, setIsOpen] = useState(false);
-  const toggle = () => setIsOpen(!isOpen);
-
 
   const [mainForm, setMainForm] = useState([]);
-
-    useEffect( () => {
-      axiosWithAuth().get('https://zoe-backend.herokuapp.com/todo/')
-          .then(response => {
-              setMainForm(response.data);
-              console.log('app axios get', response.data);
-          })
-          .catch(error => {
-              console.log(error)
-          })
-          if(!localStorage.getItem('token')) {
-              console.error('Not logged in');
-          }   else {
-              console.info('Logged in.');
-          }
-  }, []);
-
+ 
   return (
   <WunderContext.Provider value={{mainForm, setMainForm}}>	   
     <Router>
@@ -42,25 +22,25 @@ function App() {
 
         
           <div href="/lists">Zoe's World</div>
-          <div onClick={toggle} />
-          <div isOpen={isOpen} navbar>
-            <div className="mr-auto" navbar>
+          <div/>
+          <div>
+            <div>
               <div>
                 <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
-                  Log out
+                <button onClick ={() => window.location.reload(true)}>Log out</button>
                 </Link>
               </div>
               <div>
                 <div>
                   <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                    Register
+                  <button>Register</button>
                   </Link>
                 </div>
               </div>
               <div>
                 <div>
                   <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                    Login
+                  <button>Login</button>
                   </Link>
                 </div>
               </div>

@@ -26,13 +26,13 @@ function Register(props) {
             return 
         }
 
-        axiosWithAuth().post('https://wunderlist-2-0-be.herokuapp.com/api/auth/register', user)
+        axiosWithAuth().post('https://zoe-backend.herokuapp.com/users/register', user)
             .then(response => {
                 props.history.push('/login')
             })
             .catch(error => {
                 console.log(error)
-                setUser({username: '', password: ''})
+                setUser({username: '', password: ''}) 
             })
 
     };

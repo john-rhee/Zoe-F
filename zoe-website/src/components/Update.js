@@ -48,8 +48,8 @@ const Update = props => {
           axiosWithAuth()
           .get('https://zoe-backend.herokuapp.com/todo/')
           .then(response => {
-            setMainForm(response.data.tasks)});
-            props.history.push(`/todo`);
+            setMainForm(response.data)});
+            props.history.push(`/lists`);
         })
         .catch(err => console.log(err));
     };
@@ -63,27 +63,30 @@ const Update = props => {
           axiosWithAuth()
           .get('https://zoe-backend.herokuapp.com/todo')
           .then(response => {
-            setMainForm(response.data.tasks)});
-            props.history.push("/todo");
+            setMainForm(response.data)});
+            props.history.push("/lists");
         })
         .catch(error => console.log(error));
     }
 
-    const postNewWunder = arg => {
+    const postNewWunder = p => {
       const newWunder = {
-        id: Date.now(),
-        name: arg.name,
+        
+        name: p.name,
+        user_id: wunder.user_id
         
       };
+
+      console.log(newWunder)
       axiosWithAuth()
-        .post(`https://zoe-backend.herokuapp.com/todo/${wunder.id}`, newWunder )
+        .post(`https://zoe-backend.herokuapp.com/todo/`, newWunder )
         .then(response => {
           
           axiosWithAuth()
           .get('https://zoe-backend.herokuapp.com/todo/')
           .then(response => {
-            setMainForm(response.data.tasks)});
-            props.history.push("/todo");
+            setMainForm(response.data)});
+            props.history.push("/lists");
 
         })
         .catch(error => {
@@ -112,6 +115,7 @@ return (
             <input type="text" name="name" onChange={changeHandler} placeholder="name" value={wunder.name} />
 
             <button>Update</button>
+
             <button onClick={deleteList}>
                 Delete
             </button>

@@ -6,10 +6,10 @@ import WunderContext from '../contexts/WunderContext';
 
 const initialItem = {
 
-    title: "",
-
-    completed: false,
+    name: ""
+    
 };
+
 
 function AllLists() {
 
@@ -21,9 +21,9 @@ function AllLists() {
             <div>
             <h2>Welcome to Zoe's World</h2>
 
-            <link to="/search">
+            <Link to="/search">
             <button>Search Tasks</button>
-            </link>
+            </Link>
             </div>
 
             <div>

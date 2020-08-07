@@ -69,6 +69,7 @@ function AllLists() {
             {/* picture */}
             <div>
             <h3>Upload picture</h3>
+            <h3>*Upload only jpeg, jpg, png, gif file under size 5MB</h3>
             <input type="file" onChange={fileSelectHandler}/>
             <button onClick={fileUploadHandler}>Upload</button>
             </div>

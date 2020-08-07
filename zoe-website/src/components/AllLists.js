@@ -45,7 +45,7 @@ function AllLists() {
 
         <div>
             <div>
-            <h2>Welcome to Zoe's World</h2>
+            <h2>Welcome to Zoe's Album</h2>
             <h3>Picture:{uFile}</h3>
         
             <img src={url}/>

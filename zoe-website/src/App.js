@@ -23,7 +23,7 @@ function App() {
       <div className="App">
 
         
-          <div href="/lists">Zoe's World</div>
+          <div href="/lists">Zoe's Album</div>
           <img src={zoepic}/>
           <div/>
           <div>

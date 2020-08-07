@@ -46,9 +46,7 @@ function AllLists() {
         <div>
             <div>
             <h2>Welcome to Zoe's Album</h2>
-            <h3>Picture:{uFile}</h3>
-        
-            <img src={url}/>
+            <h3>Lists</h3>
 
             <Link to="/search">
             <button>Search Tasks</button>
@@ -68,8 +66,10 @@ function AllLists() {
 
             {/* picture */}
             <div>
-            <h3>Upload picture</h3>
-            <h3>*Upload only jpeg, jpg, png, gif file under size 5MB</h3>
+            <h3>Pictures</h3>
+            <h6>Upload picture</h6>
+            <img src={url}/>
+            <h6>*Upload only jpeg, jpg, png, gif file under size 5MB</h6>
             <input type="file" onChange={fileSelectHandler}/>
             <button onClick={fileUploadHandler}>Upload</button>
             </div>

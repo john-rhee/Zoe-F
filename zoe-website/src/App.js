@@ -10,6 +10,8 @@ import AllLists from './components/AllLists';
 import WunderContext from './contexts/WunderContext';
 import PrivateRoute from "./components/PrivateRoute";
 
+import zoepic from "./images/zoepic.jpeg";
+
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
 
         
           <div href="/lists">Zoe's World</div>
+          <img src={zoepic}/>
           <div/>
           <div>
             <div>

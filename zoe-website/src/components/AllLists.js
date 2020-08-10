@@ -35,8 +35,8 @@ function AllLists() {
             .post('https://zoe-backend.herokuapp.com/upload', fd)
             .then(response => {
                 console.log(response);
-                setUFile(response.data.picture.name)
-                setUrl(response.data.url)
+                // setUFile(response.data.picture.name)
+                setUrl(response.data)
                
             })
     }
@@ -68,7 +68,40 @@ function AllLists() {
             <div>
             <h3>Pictures</h3>
             <h6>Upload picture</h6>
-            <img src={url}/>
+
+            <div>
+                 {(() => {
+                    if (url == dPicture) {
+                        return (
+                         <div>
+                             <img src = {url}/>
+                         </div>
+                        )
+                    } else {
+                        return (
+                         <div>
+                            {url.map(pic => (
+                                
+                            <div key={pic.id}>
+                                <img src = {pic.name}/>
+                            </div>
+                            
+                            ))}
+                         </div>
+                        )}   
+                })()}
+            </div>
+
+            {/* <div>
+            {url.map(pic => (
+                <div 
+                key={pic.id}
+                >
+                <img src={`https://zoe-backend.herokuapp.com/profile/${pic.name}`}/>
+                </div>
+            ))}
+            </div> */}
+
             <h6>*Upload only jpeg, jpg, png, gif file under size 5MB</h6>
             <input type="file" onChange={fileSelectHandler}/>
             <button onClick={fileUploadHandler}>Upload</button>

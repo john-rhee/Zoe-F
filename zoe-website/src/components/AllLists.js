@@ -3,21 +3,54 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from "axios";
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import SingleList from './SingleList';
+import SinglePicture from './SinglePicture';
 import WunderContext from '../contexts/WunderContext';
 import dPicture from '../images/defaultImage.png';
 
-const initialItem = {
 
-    name: ""
+function AllLists(props) {
+
+    const initialItem = {
+
+        title: "",
+        description: "",
+        user_id: props.match.params.id
+       
+    };
+
+    console.log("here is the id",props.match.params.id)
+
+    const {mainForm, setMainForm, url, setUrl} = useContext(WunderContext);
+
+    console.log("starting items", url)
+
+    //getting list of images initially
+    useEffect( () => {
+        axiosWithAuth().get('http://localhost:5000/upload', {
+            //sending users id
+            params: {
+              user_id: props.match.params.id
+            }
+          })
+            .then(response => {
+                setUrl(response.data);
+                console.log('app axios get', response.data);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+            if(!localStorage.getItem('token')) {
+                console.error('Not logged in');
+            }   else {
+                console.info('Logged in.');
+            }
+      }, []);
     
-};
-
-function AllLists() {
-
-    const {mainForm, setMainForm} = useContext(WunderContext);
     //uploaded picture//
     const [uFile, setUFile] = useState("none");
-    const [url, setUrl] = useState(dPicture);
+    // const [url, setUrl] = useState(dPicture);
+    const [item, setItem] = useState(initialItem)
+    console.log("initialItem", initialItem)
 
     //picture//
     const [selectedFile, setSelectedFile] = useState(null);
@@ -29,17 +62,45 @@ function AllLists() {
     //picture//
     const fileUploadHandler = event => {
         console.log("upload started")
+
+        console.log("before json", item)
+
+        //json the items//
+        var jsonItem = JSON.stringify(item)
+
+        console.log("title, description, user id uploaded", jsonItem)
+        console.log("jsonItem file type", item.type)
+         
         const fd = new FormData() 
-        fd.append("uimage", selectedFile, selectedFile.name)
+        fd.append("uimage", selectedFile, jsonItem)
+        
         axios
-            .post('https://zoe-backend.herokuapp.com/upload', fd)
+            .post('http://localhost:5000/upload', fd)
             .then(response => {
                 console.log(response);
                 // setUFile(response.data.picture.name)
                 setUrl(response.data)
                
             })
+
+        //resetting Item form
+        setItem({ 
+            title: "",
+            description: "",
+            user_id: null
+        });    
     }
+
+    const changeHandler = e => {
+        e.persist();
+        let value = e.target.value;
+
+        setItem({
+            ...item,
+            [e.target.name]: value,
+            user_id: props.match.params.id
+            });
+    };
         
     return (
 
@@ -54,12 +115,12 @@ function AllLists() {
             </div>
 
             <div>
-
+            
             {mainForm.map(todo => (
                 <div 
                 key={todo.id}
                 >
-                    <Route render={props => {return <SingleList {...props} wList={todo} />}} />
+                    <Route render={props => {return <SingleList {...props} pList={todo} />}} />
                 </div>
             ))}
             </div>
@@ -83,10 +144,13 @@ function AllLists() {
                             {url.map(pic => (
                                 
                             <div key={pic.id}>
-                                <img src = {pic.name}/>
-                            </div>
+                                <Route render={props => {return <SinglePicture {...props} pList={pic} />}} />
+                        </div>
                             
                             ))}
+
+                         
+                            
                          </div>
                         )}   
                 })()}
@@ -103,9 +167,30 @@ function AllLists() {
             </div> */}
 
             <h6>*Upload only jpeg, jpg, png, gif file under size 5MB</h6>
+            
             <input type="file" onChange={fileSelectHandler}/>
+
+            {/* for title */}
+            <h6>Title</h6>
+            <input type="text" name="title" onChange={changeHandler} placeholder="title" value={item.title} />
+            {/* for title */}
+
+            {/* for description */}
+            <h6>Description</h6>
+            <input type="text" name="description" onChange={changeHandler} placeholder="description" value={item.description} />
+            {/* for description */}
+
             <button onClick={fileUploadHandler}>Upload</button>
+
             </div>
+
+            {/* <form onSubmit={addHandleSubmit}>
+                
+            <input type="text" name="name" onChange={changeHandler} placeholder="name" value={wunder.name} />
+
+            <button>Add</button>
+            
+            </form> */}
 
         </div>
     )

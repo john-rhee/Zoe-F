@@ -9,6 +9,8 @@ import Search from './components/Search';
 import AllLists from './components/AllLists';
 import WunderContext from './contexts/WunderContext';
 import PrivateRoute from "./components/PrivateRoute";
+import PictureUpdate from './components/PictureUpdate';
+import dPicture from './images/defaultImage.png';
 
 import zoepic from "./images/zoepic.jpeg";
 
@@ -16,9 +18,28 @@ import zoepic from "./images/zoepic.jpeg";
 function App() {
 
   const [mainForm, setMainForm] = useState([]);
+  const [url, setUrl] = useState(dPicture);
+
+  // useEffect( () => {
+  //   axiosWithAuth().get('http://localhost:5000/upload')
+  //       .then(response => {
+  //           setUrl(response.data);
+  //           console.log('app axios get', response.data);
+  //       })
+  //       .catch(error => {
+  //           console.log(error)
+  //       })
+  //       if(!localStorage.getItem('token')) {
+  //           console.error('Not logged in');
+  //       }   else {
+  //           console.info('Logged in.');
+  //       }
+  // }, []);
+
+  console.log("starting items", url)
  
   return (
-  <WunderContext.Provider value={{mainForm, setMainForm}}>	   
+  <WunderContext.Provider value={{mainForm, setMainForm, url, setUrl}}>	   
     <Router>
       <div className="App">
 
@@ -56,13 +77,19 @@ function App() {
           <Route path='/register' component={Register} />
           <Route path='/login' component={Login} />
           <Route path='/search' component={Search} />
-          <PrivateRoute exact path="/lists" component={AllLists}/>
+          <PrivateRoute exact path="/lists/:id" component={AllLists}/>
           <Route
             path="/update/:id"
             render={props => {
             return <Update {...props}/>
             }}  
             /> 
+          <Route
+            path="/lists/:id/update"
+            render={props => {
+            return <PictureUpdate {...props}/>
+            }}  
+            />            
         
     </Router>
   </WunderContext.Provider>    

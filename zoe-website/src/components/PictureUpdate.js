@@ -1,126 +1,99 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from "axios";
 import WunderContext from '../contexts/WunderContext';
-
-
-const initialItem = {
-
-    name: ""
-
-};
 
 const PictureUpdate = props => {
 
-    const {mainForm, setMainForm} = useContext(WunderContext);  
-    const [wunder, setWunder] = useState(initialItem);
+    const initialItem = {
+
+      title: "",
+      description: "",
+      user_id: props.match.params.id
+    
+    };
+
+    const {mainForm, setMainForm, url, setUrl} = useContext(WunderContext);
 
     console.log(mainForm)
     console.log(props)
     console.log(props.match.params.id)
 
-    const changeHandler = e => {
-      e.persist();
-      let value = e.target.value;
+    //uploaded picture//
+    const [item, setItem] = useState(initialItem)
+    console.log("initialItem", initialItem)
+
+    //picture//
+    const [selectedFile, setSelectedFile] = useState(null);
     
-    setWunder({
-        ...wunder,
-        [e.target.name]: value
-      });
-  };
+    //picture//
+    const fileSelectHandler = event => {
+        setSelectedFile(event.target.files[0])
+    }
+    //picture//
+    const fileUploadHandler = event => {
+        console.log("upload started")
 
-    useEffect(() => {
-        // Solves refresh race condition
-        console.log(props)
-        if (mainForm.length > 0) {
-          const newFile = mainForm.find(
-            thing => `${thing.id}` === props.match.params.id
-          );
-          setWunder(newFile);
-        }
-      }, [mainForm, props.match.params.id]);
+        console.log("before json", item)
 
-    const handleSubmit = e => {
-      e.preventDefault();
-      axiosWithAuth()
-        .put(`https://zoe-backend.herokuapp.com/todo/${wunder.id}`, wunder)
-        .then(res => {
+        //json the items//
+        var jsonItem = JSON.stringify(item)
 
-          axiosWithAuth()
-          .get('https://zoe-backend.herokuapp.com/todo/')
-          .then(response => {
-            setMainForm(response.data)});
-            props.history.push(`/lists`);
-        })
-        .catch(err => console.log(err));
-    };
+        console.log("title, description, user id uploaded", jsonItem)
+        console.log("jsonItem file type", item.type)
+         
+        const fd = new FormData() 
+        fd.append("uimage", selectedFile, jsonItem)
+        
+        axios
+            .put(`http://localhost:5000/upload/${mainForm.id}`, fd)
+            .then(response => {
+                console.log(response);
+                
+                setUrl(response.data)
+                props.history.push(`/lists/${item.user_id}`);
+            })
+            window.location.reload()
 
-  const deleteList = e => {
-      e.preventDefault();
-      axiosWithAuth()
-      .delete(`https://zoe-backend.herokuapp.com/todo/${wunder.id}`)
-        .then(res => {
-
-          axiosWithAuth()
-          .get('https://zoe-backend.herokuapp.com/todo')
-          .then(response => {
-            setMainForm(response.data)});
-            props.history.push("/lists");
-        })
-        .catch(error => console.log(error));
+        //resetting Item form
+        setItem({ 
+            title: "",
+            description: "",
+            user_id: null
+        });    
     }
 
-    const postNewWunder = p => {
-      const newWunder = {
-        
-        name: p.name,
-        user_id: wunder.user_id
-        
-      };
+    const changeHandler = e => {
+        e.persist();
+        let value = e.target.value;
 
-      console.log(newWunder)
-      axiosWithAuth()
-        .post(`https://zoe-backend.herokuapp.com/todo/`, newWunder )
-        .then(response => {
-          
-          axiosWithAuth()
-          .get('https://zoe-backend.herokuapp.com/todo/')
-          .then(response => {
-            setMainForm(response.data)});
-            props.history.push("/lists");
-
-        })
-        .catch(error => {
-          console.log("the data was not posted", error);
-        });
-    };
-
-    const addHandleSubmit = e => {
-      e.preventDefault();
-      postNewWunder(wunder);
-      //resetting form
-      setWunder({ 
-        name: "" });
-      };
-
-
-console.log(wunder)
+        setItem({
+            ...item,
+            [e.target.name]: value,
+            user_id: props.match.params.id
+            });
+    };    
 
 return (
 
     <div>
 
-    <h2>Update or Delete Task</h2>
-      <form onSubmit={handleSubmit}>
-        
-            <h3>Todo</h3>
-            <input type="text" name="name" onChange={changeHandler} placeholder="name" value={wunder.name} />
+    <h2>Update</h2>
+    <h6>*Upload only jpeg, jpg, png, gif file under size 5MB</h6>
+            
+            <input type="file" onChange={fileSelectHandler}/>
 
-            <button>Update</button>
+            {/* for title */}
+            <h6>Title</h6>
+            <input type="text" name="title" onChange={changeHandler} placeholder="title" value={item.title} />
+            {/* for title */}
 
-            <button onClick={deleteList}>
-                Delete
-            </button>
-      </form>
+            {/* for description */}
+            <h6>Description</h6>
+            <input type="text" name="description" onChange={changeHandler} placeholder="description" value={item.description} />
+            {/* for description */}
+
+            <button onClick={fileUploadHandler}>Update</button>
 
     </div>
   );

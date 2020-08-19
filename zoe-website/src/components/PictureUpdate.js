@@ -5,19 +5,22 @@ import WunderContext from '../contexts/WunderContext';
 
 const PictureUpdate = props => {
 
+    const {mainForm, setMainForm, url, setUrl, imageId, setImageId, uId, setUId} = useContext(WunderContext);
+
     const initialItem = {
 
       title: "",
       description: "",
-      user_id: props.match.params.id
-    
+      user_id: uId,
+      image_id: props.match.params.id,
     };
 
-    const {mainForm, setMainForm, url, setUrl} = useContext(WunderContext);
-
+    console.log(uId)
     console.log(mainForm)
     console.log(props)
     console.log(props.match.params.id)
+    console.log("image id", imageId)
+
 
     //uploaded picture//
     const [item, setItem] = useState(initialItem)
@@ -46,20 +49,22 @@ const PictureUpdate = props => {
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
-            .put(`http://localhost:5000/upload/${mainForm.id}`, fd)
+            .put(`http://localhost:5000/upload/${uId}`, fd)
             .then(response => {
                 console.log(response);
                 
                 setUrl(response.data)
-                props.history.push(`/lists/${item.user_id}`);
             })
+
+            props.history.push(`/lists/${uId}`);
             window.location.reload()
 
         //resetting Item form
         setItem({ 
             title: "",
             description: "",
-            user_id: null
+            user_id: null,
+            image_id: ""
         });    
     }
 
@@ -70,7 +75,7 @@ const PictureUpdate = props => {
         setItem({
             ...item,
             [e.target.name]: value,
-            user_id: props.match.params.id
+            user_id: uId
             });
     };    
 

@@ -14,13 +14,17 @@ function AllLists(props) {
 
         title: "",
         description: "",
-        user_id: props.match.params.id
+        user_id: props.match.params.id,
+        image_id: ""
        
     };
+    
 
     console.log("here is the id",props.match.params.id)
 
-    const {mainForm, setMainForm, url, setUrl} = useContext(WunderContext);
+    const {mainForm, setMainForm, url, setUrl, uId, setUId} = useContext(WunderContext);
+
+    setUId(props.match.params.id)
 
     console.log("starting items", url)
 
@@ -87,7 +91,8 @@ function AllLists(props) {
         setItem({ 
             title: "",
             description: "",
-            user_id: null
+            user_id: null,
+            image_id: ""
         });    
     }
 
@@ -120,7 +125,7 @@ function AllLists(props) {
                 <div 
                 key={todo.id}
                 >
-                    <Route render={props => {return <SingleList {...props} pList={todo} />}} />
+                    <Route render={props => {return <SingleList {...props} pList={todo}/>}} />
                 </div>
             ))}
             </div>
@@ -144,7 +149,7 @@ function AllLists(props) {
                             {url.map(pic => (
                                 
                             <div key={pic.id}>
-                                <Route render={props => {return <SinglePicture {...props} pList={pic} />}} />
+                                <Route render={props => {return <SinglePicture {...props} pList={pic} picId ={pic.id}/>}} />
                         </div>
                             
                             ))}

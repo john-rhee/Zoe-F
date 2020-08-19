@@ -17,8 +17,14 @@ import zoepic from "./images/zoepic.jpeg";
 
 function App() {
 
+  const initialId = ""
+
   const [mainForm, setMainForm] = useState([]);
   const [url, setUrl] = useState(dPicture);
+  const [uId, setUId] = useState(initialId)
+
+  //image id//
+  const [imageId, setImageId] = useState(null);
 
   // useEffect( () => {
   //   axiosWithAuth().get('http://localhost:5000/upload')
@@ -39,7 +45,7 @@ function App() {
   console.log("starting items", url)
  
   return (
-  <WunderContext.Provider value={{mainForm, setMainForm, url, setUrl}}>	   
+  <WunderContext.Provider value={{mainForm, setMainForm, url, setUrl, imageId, setImageId, uId, setUId}}>	   
     <Router>
       <div className="App">
 

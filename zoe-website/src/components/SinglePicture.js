@@ -13,21 +13,21 @@ function SinglePicture(props) {
     const image_id = props.picId.toString()
 
 
-    const image_url = `http://localhost:5000/profile/${name}`
+    const image_url = `https://zoe-backend.herokuapp.com/profile/${name}`
 
     const {mainForm, setMainForm, url, setUrl, imageId, setImageId} = useContext(WunderContext);
 
     const deleteList = e => {
         e.preventDefault();
         axiosWithAuth()
-        .delete(`http://localhost:5000/upload/${id}`,
+        .delete(`https://zoe-backend.herokuapp.com/upload/${id}`,
             //sending image file name
             {params: {file_name: name}}
              )
           .then(res => {
   
             axiosWithAuth()
-            .get('http://localhost:5000/upload')
+            .get('https://zoe-backend.herokuapp.com/upload')
             .then(response => {
               setUrl(response.data)});
               props.history.push(`/lists/${user_id}`);
@@ -42,7 +42,7 @@ function SinglePicture(props) {
         <div>
 
             <img src = {image_url}/>
-            <h2>{image_id}</h2>
+            {/* <h2>{image_id}</h2> */}
             <h2>{title}</h2>
             <h3>{descript}</h3>
 

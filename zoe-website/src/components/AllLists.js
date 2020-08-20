@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from "axios";
 import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
-import SingleList from './SingleList';
 import SinglePicture from './SinglePicture';
 import WunderContext from '../contexts/WunderContext';
 import dPicture from '../images/defaultImage.png';
@@ -30,7 +29,7 @@ function AllLists(props) {
 
     //getting list of images initially
     useEffect( () => {
-        axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload', {
+        axiosWithAuth().get('http://localhost:5000/upload', {
             //sending users id
             params: {
               user_id: props.match.params.id
@@ -79,7 +78,7 @@ function AllLists(props) {
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
-            .post('https://zoe-backend.herokuapp.com/upload', fd)
+            .post('http://localhost:5000/upload', fd)
             .then(response => {
                 console.log(response);
                 // setUFile(response.data.picture.name)
@@ -112,22 +111,6 @@ function AllLists(props) {
         <div>
             <div>
             <h2>Welcome to Zoe's Album</h2>
-            <h3>Lists</h3>
-
-            <Link to="/search">
-            <button>Search Tasks</button>
-            </Link>
-            </div>
-
-            <div>
-            
-            {mainForm.map(todo => (
-                <div 
-                key={todo.id}
-                >
-                    <Route render={props => {return <SingleList {...props} pList={todo}/>}} />
-                </div>
-            ))}
             </div>
 
             {/* picture */}

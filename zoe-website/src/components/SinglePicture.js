@@ -13,21 +13,21 @@ function SinglePicture(props) {
     const image_id = props.picId.toString()
 
 
-    const image_url = `https://zoe-backend.herokuapp.com/profile/${name}`
+    const image_url = `http://localhost:5000/profile/${name}`
 
     const {mainForm, setMainForm, url, setUrl, imageId, setImageId} = useContext(WunderContext);
 
     const deleteList = e => {
         e.preventDefault();
         axiosWithAuth()
-        .delete(`https://zoe-backend.herokuapp.com/upload/${id}`,
+        .delete(`http://localhost:5000/upload/${id}`,
             //sending image file name
             {params: {file_name: name}}
              )
           .then(res => {
   
             axiosWithAuth()
-            .get('https://zoe-backend.herokuapp.com/upload')
+            .get('http://localhost:5000/upload')
             .then(response => {
               setUrl(response.data)});
               props.history.push(`/lists/${user_id}`);

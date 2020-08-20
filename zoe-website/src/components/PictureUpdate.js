@@ -7,20 +7,24 @@ const PictureUpdate = props => {
 
     const {mainForm, setMainForm, url, setUrl, imageId, setImageId, uId, setUId} = useContext(WunderContext);
 
+    const upFileName = props.location.state.fileName
+
     const initialItem = {
 
       title: "",
       description: "",
       user_id: uId,
       image_id: props.match.params.id,
+      prev_file: upFileName
+
     };
 
     console.log(uId)
     console.log(mainForm)
     console.log(props)
+    console.log("file name:", props.location.state.fileName)
     console.log(props.match.params.id)
     console.log("image id", imageId)
-
 
     //uploaded picture//
     const [item, setItem] = useState(initialItem)

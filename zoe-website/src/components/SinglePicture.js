@@ -34,7 +34,7 @@ function SinglePicture(props) {
           })
           .catch(error => console.log(error));
           //refreshes the page 
-        //   window.location.reload()
+          window.location.reload()
       }
 
     return (
@@ -48,7 +48,7 @@ function SinglePicture(props) {
 
             <button onClick={
                 // setImageId(image_id),
-                () =>  props.history.push(`/lists/${image_id}/update`)}>
+                () =>  props.history.push(`/lists/${image_id}/update`,{fileName:name})}>
                 Edit
             </button>
 

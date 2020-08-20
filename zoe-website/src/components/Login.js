@@ -30,13 +30,16 @@ const Login = props =>{
       axios.post('https://zoe-backend.herokuapp.com/users/login', state.credentials)
       .then(response => {
           console.log("check here", response);
+
+          const user_ID = response.data.user_id
+          console.log("user id here", user_ID);
+          
           const { data } = response;
 
           localStorage.setItem("token", data.token);
           setState({ ...state, isLoggedIn: true });
 
-          const user_ID = response.data.user_id
-          console.log("check here", user_ID);
+          
 
           axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload', {
             //sending users id

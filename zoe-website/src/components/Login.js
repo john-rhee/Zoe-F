@@ -29,11 +29,10 @@ const Login = props =>{
       event.preventDefault();
       axios.post('https://zoe-backend.herokuapp.com/users/login', state.credentials)
       .then(response => {
-          console.log("user id here", response.data.user_id);
-          // console.log("check here", response);
+          console.log("check here", response);
 
-          // const user_ID = response.data.user_id
-          // console.log("user id here", response.data.user_id);
+          const user_ID = response.data.user_id
+          console.log("user id here", response.data.user_id);
 
           const { data } = response;
 

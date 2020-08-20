@@ -35,18 +35,16 @@ const Login = props =>{
           localStorage.setItem("token", data.token);
           setState({ ...state, isLoggedIn: true });
 
-          axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload', 
-          // {
-          //   //sending users id
-          //   params: {
-          //     user_id: uId
-          //   }
-          // }
-          )
+          axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload', {
+            //sending users id
+            params: {
+              user_id: response.data.user_id
+            }
+          })
           .then(response => {
             setMainForm(response.data)});
 
-          props.history.push(`/lists/`);
+          props.history.push(`/lists/${response.data.user_id}`);
       })
   }
 

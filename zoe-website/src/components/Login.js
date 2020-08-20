@@ -32,8 +32,8 @@ const Login = props =>{
           console.log("check here", response);
 
           const user_ID = response.data.user_id
-          console.log("user id here", user_ID);
-          
+          console.log("user id here", response.data.user_id);
+
           const { data } = response;
 
           localStorage.setItem("token", data.token);
@@ -50,7 +50,7 @@ const Login = props =>{
           .then(response => {
             setMainForm(response.data)});
 
-          props.history.push(`/lists/${user_ID}`);
+          // props.history.push(`/lists/${user_ID}`);
       })
   }
 

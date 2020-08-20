@@ -29,18 +29,22 @@ const Login = props =>{
       event.preventDefault();
       axios.post('https://zoe-backend.herokuapp.com/users/login', state.credentials)
       .then(response => {
-          console.log(response);
+          console.log("check here", response);
           const { data } = response;
 
           localStorage.setItem("token", data.token);
           setState({ ...state, isLoggedIn: true });
 
-          axiosWithAuth()
-          .get('https://zoe-backend.herokuapp.com/todo/')
+          axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload', {
+            //sending users id
+            params: {
+              user_id: uId
+            }
+          })
           .then(response => {
             setMainForm(response.data)});
 
-          props.history.push('/lists');
+          props.history.push(`/lists/${uId}`);
       })
   }
 

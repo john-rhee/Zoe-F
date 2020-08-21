@@ -6,6 +6,8 @@ import SinglePicture from './SinglePicture';
 import WunderContext from '../contexts/WunderContext';
 import dPicture from '../images/defaultImage.png';
 
+// http://localhost:5000/
+// https://zoe-backend.herokuapp.com/
 
 function AllLists(props) {
 
@@ -29,7 +31,7 @@ function AllLists(props) {
 
     //getting list of images initially
     useEffect( () => {
-        axiosWithAuth().get('http://localhost:5000/upload/', {
+        axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload/', {
             //sending users id
             params: {
               user_id: props.match.params.id
@@ -78,7 +80,7 @@ function AllLists(props) {
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
-            .post('http://localhost:5000/upload/', fd)
+            .post('https://zoe-backend.herokuapp.com/upload/', fd)
             .then(response => {
                 console.log(response);
                 // setUFile(response.data.picture.name)

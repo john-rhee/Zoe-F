@@ -17,8 +17,8 @@ function Register(props) {
 
         ///added for form validation demo
         let message = ""
-        if (user.password.length <= 6){
-            message='Password must be longer than 6 characters'
+        if (user.password.length <= 4){
+            message='Password must be longer than 4 characters'
         }
 
         if (message) {
@@ -26,7 +26,7 @@ function Register(props) {
             return 
         }
 
-        axiosWithAuth().post('http://localhost:5000/users/register', user)
+        axiosWithAuth().post('https://zoe-backend.herokuapp.com/users/register', user)
             .then(response => {
                 props.history.push('/login')
             })

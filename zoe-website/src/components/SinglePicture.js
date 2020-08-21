@@ -27,7 +27,7 @@ function SinglePicture(props) {
           .then(res => {
   
             axiosWithAuth()
-            .get('https://zoe-backend.herokuapp.com/upload')
+            .get('https://zoe-backend.herokuapp.com/upload/')
             .then(response => {
               setUrl(response.data)});
               props.history.push(`/lists/${user_id}`);

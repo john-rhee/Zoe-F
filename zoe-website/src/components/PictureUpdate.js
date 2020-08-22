@@ -53,7 +53,7 @@ const PictureUpdate = props => {
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
-            .put(`https://zoe-backend.herokuapp.com/upload/${uId}`, fd)
+            .put(`http://localhost:5000/upload/${uId}`, fd)
             .then(response => {
                 console.log(response);
                 

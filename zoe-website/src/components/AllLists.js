@@ -31,7 +31,7 @@ function AllLists(props) {
 
     //getting list of images initially
     useEffect( () => {
-        axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload/', {
+        axiosWithAuth().get('http://localhost:5000/upload/', {
             //sending users id
             params: {
               user_id: props.match.params.id
@@ -80,9 +80,9 @@ function AllLists(props) {
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
-            .post('https://zoe-backend.herokuapp.com/upload/', fd)
+            .post('http://localhost:5000/upload/', fd)
             .then(response => {
-                console.log(response);
+                console.log("response after posting",response);
                 // setUFile(response.data.picture.name)
                 setUrl(response.data)
                

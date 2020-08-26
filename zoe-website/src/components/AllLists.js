@@ -8,7 +8,6 @@ import dPicture from '../images/defaultImage.png';
 
 // http://localhost:5000/
 // https://zoe-backend.herokuapp.com/
-// https://cors-anywhere.herokuapp.com${}
 
 function AllLists(props) {
 
@@ -70,8 +69,6 @@ function AllLists(props) {
       }, []);
     
     //uploaded picture//
-    const [uFile, setUFile] = useState("none");
-    // const [url, setUrl] = useState(dPicture);
     const [item, setItem] = useState(initialItem)
     console.log("initialItem", initialItem)
 
@@ -97,11 +94,11 @@ function AllLists(props) {
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
-            // .post('https://zoe-backend.herokuapp.com/upload/', fd)
+            //.post('https://zoe-backend.herokuapp.com/upload/', fd)
             .post('http://localhost:5000/upload/', fd)
             .then(response => {
                 console.log("response after posting",response);
-                // setUFile(response.data.picture.name)
+                //setUFile(response.data.picture.name)
                 setUrl(response.data)
                
             })
@@ -164,16 +161,6 @@ function AllLists(props) {
                 })()}
             </div>
 
-            {/* <div>
-            {url.map(pic => (
-                <div 
-                key={pic.id}
-                >
-                <img src={`https://zoe-backend.herokuapp.com/profile/${pic.name}`}/>
-                </div>
-            ))}
-            </div> */}
-
             <h6>*Upload only jpeg, jpg, png, gif file under size 5MB</h6>
             
             <input type="file" onChange={fileSelectHandler}/>
@@ -191,14 +178,6 @@ function AllLists(props) {
             <button onClick={fileUploadHandler}>Upload</button>
 
             </div>
-
-            {/* <form onSubmit={addHandleSubmit}>
-                
-            <input type="text" name="name" onChange={changeHandler} placeholder="name" value={wunder.name} />
-
-            <button>Add</button>
-            
-            </form> */}
 
         </div>
     )

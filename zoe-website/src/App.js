@@ -23,22 +23,6 @@ function App() {
   //image id//
   const [imageId, setImageId] = useState(null);
 
-  // useEffect( () => {
-  //   axiosWithAuth().get('http://localhost:5000/upload')
-  //       .then(response => {
-  //           setUrl(response.data);
-  //           console.log('app axios get', response.data);
-  //       })
-  //       .catch(error => {
-  //           console.log(error)
-  //       })
-  //       if(!localStorage.getItem('token')) {
-  //           console.error('Not logged in');
-  //       }   else {
-  //           console.info('Logged in.');
-  //       }
-  // }, []);
-
   console.log("starting items", url)
  
   return (
@@ -48,7 +32,6 @@ function App() {
 
         
           <div href="/lists">Zoe's Album</div>
-          {/* <img src={zoepic}/> */}
           <div/>
           <div>
             <div>

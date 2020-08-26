@@ -74,8 +74,6 @@ const PictureUpdate = props => {
             })
             .catch(error => console.log(error));
 
-            // props.history.push(`/lists/${uId}`);
-
         //resetting Item form
         setItem({ 
             title: "",
@@ -108,12 +106,11 @@ return (
             {/* for title */}
             <h6>Title</h6>
             <input type="text" name="title" onChange={changeHandler} placeholder="title" value={item.title} />
-            {/* for title */}
 
             {/* for description */}
             <h6>Description</h6>
             <input type="text" name="description" onChange={changeHandler} placeholder="description" value={item.description} />
-            {/* for description */}
+           
 
             <button onClick={fileUploadHandler}>Update</button>
 

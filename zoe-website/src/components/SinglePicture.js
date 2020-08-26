@@ -5,14 +5,11 @@ import axios from "axios";
 
 function SinglePicture(props) {
 
-
-    // const {id, name} = props.wList;
     const {id, name, title, descript} = props.pList;
 
     const user_id = props.match.params.id
 
     const image_id = props.picId.toString()
-    
     
 
     // const image_url = `https://zoe-backend.herokuapp.com/profile/${name}`
@@ -54,12 +51,10 @@ function SinglePicture(props) {
         <div>
 
             <img src = {image_url}/>
-            {/* <h2>{image_id}</h2> */}
             <h2>{title}</h2>
             <h3>{descript}</h3>
 
             <button onClick={
-                // setImageId(image_id),
                 () =>  props.history.push(`/lists/${image_id}/update`,{fileName:name})}>
                 Edit
             </button>
@@ -67,8 +62,6 @@ function SinglePicture(props) {
             <button onClick={deleteList}>
                 Delete
             </button>
-
-            {/* <h3 className='line'>{title}</h3> */}
 
         </div>    
     )

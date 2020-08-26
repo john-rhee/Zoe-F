@@ -27,6 +27,7 @@ const Login = props =>{
 
   const loginEvent = event => {
       event.preventDefault();
+      // axios.post('https://zoe-backend.herokuapp.com/users/login', state.credentials)
       axios.post('http://localhost:5000/users/login', state.credentials)
       .then(response => {
           console.log("check here", response);
@@ -41,7 +42,8 @@ const Login = props =>{
 
           
 
-          axiosWithAuth().get('http://localhost:5000/upload', {
+          // axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload/', {
+          axiosWithAuth().get('http://localhost:5000/upload/', {
             //sending users id
             params: {
               user_id: user_ID

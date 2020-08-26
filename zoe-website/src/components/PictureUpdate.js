@@ -47,21 +47,34 @@ const PictureUpdate = props => {
         var jsonItem = JSON.stringify(item)
 
         console.log("title, description, user id uploaded", jsonItem)
-        console.log("jsonItem file type", item.type)
          
         const fd = new FormData() 
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
+            // .put(`https://zoe-backend.herokuapp.com/upload/${uId}`, fd)
             .put(`http://localhost:5000/upload/${uId}`, fd)
             .then(response => {
-                console.log(response);
-                
-                setUrl(response.data)
-            })
+                console.log("response after update",response);
+                // setUrl(response.data)
 
-            props.history.push(`/lists/${uId}`);
-            window.location.reload()
+                axiosWithAuth()
+                    // .get('https://zoe-backend.herokuapp.com/upload/', {
+                    .get('http://localhost:5000/upload/', {
+                        //sending users id
+                        params: {
+                        user_id: uId
+                        }
+                    })
+                    .then(response => {
+                    console.log("response after update 2",response);
+                    setUrl(response.data)
+                });
+                    props.history.push(`/lists/${uId}`);
+            })
+            .catch(error => console.log(error));
+
+            // props.history.push(`/lists/${uId}`);
 
         //resetting Item form
         setItem({ 

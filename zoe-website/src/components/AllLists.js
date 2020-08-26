@@ -8,6 +8,7 @@ import dPicture from '../images/defaultImage.png';
 
 // http://localhost:5000/
 // https://zoe-backend.herokuapp.com/
+// https://cors-anywhere.herokuapp.com${}
 
 function AllLists(props) {
 
@@ -29,16 +30,33 @@ function AllLists(props) {
 
     console.log("starting items", url)
 
+    if (url.length < 1) {
+        console.log("0 url length", url.length)
+        setUrl(dPicture)
+    } else {
+        console.log("0 > 1 url length", url.length)
+        setUrl(url);
+    }
+
     //getting list of images initially
     useEffect( () => {
-        axiosWithAuth().get('http://localhost:5000/upload/', {
+        // axiosWithAuth().get('https://zoe-backend.herokuapp.com/upload/', {
+        axiosWithAuth().get('http://localhost:5000/upload/', {    
             //sending users id
             params: {
               user_id: props.match.params.id
             }
           })
             .then(response => {
-                setUrl(response.data);
+
+                if (response.data.length < 1) {
+                    console.log("0 dataset length", response.data.length)
+                    setUrl(dPicture)
+                } else {
+                    console.log("full dataset length", response.data.length)
+                    setUrl(response.data);
+                }
+
                 console.log('app axios get', response.data);
             })
             .catch(error => {
@@ -74,12 +92,12 @@ function AllLists(props) {
         var jsonItem = JSON.stringify(item)
 
         console.log("title, description, user id uploaded", jsonItem)
-        console.log("jsonItem file type", item.type)
          
         const fd = new FormData() 
         fd.append("uimage", selectedFile, jsonItem)
         
         axios
+            // .post('https://zoe-backend.herokuapp.com/upload/', fd)
             .post('http://localhost:5000/upload/', fd)
             .then(response => {
                 console.log("response after posting",response);

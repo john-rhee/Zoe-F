@@ -9,7 +9,6 @@ import WunderContext from './contexts/WunderContext';
 import PrivateRoute from "./components/PrivateRoute";
 import PictureUpdate from './components/PictureUpdate';
 import dPicture from './images/defaultImage.png';
-import zoepic from "./images/zoepic.jpg";
 
 
 function App() {

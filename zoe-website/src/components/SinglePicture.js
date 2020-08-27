@@ -12,17 +12,17 @@ function SinglePicture(props) {
     const image_id = props.picId.toString()
     
 
-    // const image_url = `https://zoe-backend.herokuapp.com/profile/${name}`
-    const image_url = `http://localhost:5000/profile/${name}`
+    const image_url = `https://zoe-backend.herokuapp.com/profile/${name}`
+    // const image_url = `http://localhost:5000/profile/${name}`
 
     const {mainForm, setMainForm, url, setUrl, imageId, setImageId} = useContext(WunderContext);
 
     const deleteList = e => {
         e.preventDefault();
         // axiosWithAuth()
-        axios
-        // .delete(`https://zoe-backend.herokuapp.com/upload/${id}`,
-        .delete(`http://localhost:5000/upload/${id}`,
+        axiosWithAuth()
+        .delete(`https://zoe-backend.herokuapp.com/upload/${id}`,
+        // .delete(`http://localhost:5000/upload/${id}`,
             //sending image file name
             {params: {file_name: name}}
              )
@@ -30,8 +30,8 @@ function SinglePicture(props) {
             console.log(res);
   
             axiosWithAuth()
-            // .get('https://zoe-backend.herokuapp.com/upload/', {
-            .get('http://localhost:5000/upload/', {
+            .get('https://zoe-backend.herokuapp.com/upload/', {
+            // .get('http://localhost:5000/upload/', {
                 //sending users id
                 params: {
                   user_id: user_id

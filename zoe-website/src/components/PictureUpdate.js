@@ -51,16 +51,16 @@ const PictureUpdate = props => {
         const fd = new FormData() 
         fd.append("uimage", selectedFile, jsonItem)
         
-        axios
-            // .put(`https://zoe-backend.herokuapp.com/upload/${uId}`, fd)
-            .put(`http://localhost:5000/upload/${uId}`, fd)
+        axiosWithAuth()
+            .put(`https://zoe-backend.herokuapp.com/upload/${uId}`, fd)
+            // .put(`http://localhost:5000/upload/${uId}`, fd)
             .then(response => {
                 console.log("response after update",response);
                 // setUrl(response.data)
 
                 axiosWithAuth()
-                    // .get('https://zoe-backend.herokuapp.com/upload/', {
-                    .get('http://localhost:5000/upload/', {
+                    .get('https://zoe-backend.herokuapp.com/upload/', {
+                    // .get('http://localhost:5000/upload/', {
                         //sending users id
                         params: {
                         user_id: uId

@@ -26,8 +26,8 @@ function Register(props) {
             return 
         }
 
-        // axiosWithAuth().post('https://zoe-backend.herokuapp.com/users/register', user)
-        axiosWithAuth().post('http://localhost:5000/users/register', user)
+        axiosWithAuth().post('https://zoe-backend.herokuapp.com/users/register', user)
+        // axiosWithAuth().post('http://localhost:5000/users/register', user)
             .then(response => {
                 props.history.push('/login')
             })

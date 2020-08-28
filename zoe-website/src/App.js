@@ -9,6 +9,7 @@ import WunderContext from './contexts/WunderContext';
 import PrivateRoute from "./components/PrivateRoute";
 import PictureUpdate from './components/PictureUpdate';
 import dPicture from './images/defaultImage.png';
+import hPicture from './images/zoeHome.jpg';
 
 
 function App() {
@@ -29,8 +30,7 @@ function App() {
     <Router>
       <div className="App">
 
-        
-          <div href="/lists">Zoe's Album</div>
+          <img src = {hPicture}/>
           <div/>
           <div>
             <div>

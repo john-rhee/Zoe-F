@@ -9,7 +9,7 @@ import WunderContext from './contexts/WunderContext';
 import PrivateRoute from "./components/PrivateRoute";
 import PictureUpdate from './components/PictureUpdate';
 import dPicture from './images/defaultImage.png';
-import hPicture from './images/zoeHome.jpg';
+import hPicture from './images/zoepic2.jpg';
 
 
 function App() {
@@ -30,10 +30,12 @@ function App() {
     <Router>
       <div className="App">
 
-          <img src = {hPicture}/>
-          <div/>
+          
+         
           <div>
             <div>
+
+              <h1>Zoe's Album</h1>
               <div>
                 <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
                 <button onClick ={() => window.location.reload(true)}>Log out</button>
@@ -55,6 +57,8 @@ function App() {
               </div>
             </div>
          
+            <img src = {hPicture}/>
+
         </div>
 
         </div>

@@ -41,7 +41,7 @@ function Register(props) {
     return (
         <div>
             <form onSubmit={submitForm} style={{margin: "5% 25%"}}>
-            <h2>Register</h2>
+            <h2 class="registerForm">Register</h2>
             
                 
                 <input type="username" name="username" id="username" placeholder="Username" value={user.username} onChange={handleChanges} />

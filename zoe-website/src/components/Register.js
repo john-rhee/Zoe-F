@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import MuiButton from "@material-ui/core/Button";
+const Button = styled(MuiButton)(spacing);
+
 
 
 function Register(props) {
@@ -40,7 +45,7 @@ function Register(props) {
 
     return (
         <div>
-            <form onSubmit={submitForm} style={{margin: "5% 25%"}}>
+            <form onSubmit={submitForm} >
             <h2 class="registerForm">Register</h2>
             
                 
@@ -51,7 +56,7 @@ function Register(props) {
                 {/* added for form validation demo */}
                 <div>{user.message}</div>
                 
-                <button type="submit">Submit</button>
+                <Button my={1}  variant="contained" type="submit">Submit</Button>
                 
             </form>
         </div>

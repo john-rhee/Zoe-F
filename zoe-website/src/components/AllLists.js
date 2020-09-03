@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import SinglePicture from './SinglePicture';
 import WunderContext from '../contexts/WunderContext';
 import dPicture from '../images/defaultImage.png';
+import Button from '@material-ui/core/Button';
 
 // http://localhost:5000/
 // https://zoe-backend.herokuapp.com/
@@ -175,7 +176,7 @@ function AllLists(props) {
             <input type="text" name="description" onChange={changeHandler} placeholder="description" value={item.description} />
             {/* for description */}
 
-            <button onClick={fileUploadHandler}>Upload</button>
+            <Button variant="contained" color="primary" onClick={fileUploadHandler}>Upload</Button>
 
             </div>
 

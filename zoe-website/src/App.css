@@ -37,3 +37,32 @@
     transform: rotate(360deg);
   }
 }
+
+.logButtonO {
+  margin: 10px; 
+}
+
+.logButtonI {
+  margin: 10px;
+}
+
+.regButton {
+  margin: 10px;
+}
+
+.dash {
+  display: flex;
+  flex-direction: row;
+  margin-left: 17%;
+}
+
+.title {
+  align-content: flex-start; 
+  margin-right: 50%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+.registerDiv {
+  align-content: center;
+}

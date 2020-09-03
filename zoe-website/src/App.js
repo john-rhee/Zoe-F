@@ -11,6 +11,11 @@ import PictureUpdate from './components/PictureUpdate';
 import dPicture from './images/defaultImage.png';
 import hPicture from './images/zoepic2.jpg';
 
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import MuiButton from "@material-ui/core/Button";
+const Button = styled(MuiButton)(spacing);
+
 
 function App() {
 
@@ -33,38 +38,40 @@ function App() {
           
          
           <div>
-            <div>
+            <div class="dash">
 
-              <h1>Zoe's Album</h1>
+              <h1 class="title" >Zoe's Album</h1>
+
               <div>
                 <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
-                <button onClick ={() => window.location.reload(true)}>Log out</button>
+                <Button my={1.5} mx={0.5} variant="contained" onClick ={() => window.location.reload(true)}>Log out</Button>
                 </Link>
               </div>
+              
               <div>
-                <div>
-                  <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                  <button>Register</button>
-                  </Link>
-                </div>
+                <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
+                <Button my={1.5} mx={0.5} variant="contained">Register</Button>
+                </Link>
               </div>
+              
               <div>
-                <div>
-                  <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                  <button>Login</button>
-                  </Link>
-                </div>
+                <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
+                <Button my={1.5} mx={0.5} variant="contained">Login</Button>
+                </Link>
               </div>
+              
             </div>
          
+            <Route path='/register' component={Register} />
+            <Route path='/login' component={Login} />
+
             <img src = {hPicture}/>
 
         </div>
 
         </div>
         
-          <Route path='/register' component={Register} />
-          <Route path='/login' component={Login} />
+          
           <PrivateRoute exact path="/lists/:id" component={AllLists}/>
           <Route
             path="/lists/:id/update"

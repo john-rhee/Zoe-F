@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from "axios";
 import WunderContext from '../contexts/WunderContext';
+import Button from '@material-ui/core/Button';
 
 const PictureUpdate = props => {
 
@@ -111,8 +112,8 @@ return (
             <h6>Description</h6>
             <input type="text" name="description" onChange={changeHandler} placeholder="description" value={item.description} />
            
-
-            <button onClick={fileUploadHandler}>Update</button>
+            <Button variant="contained" color="primary" onClick={fileUploadHandler}>Update</Button>
+           
 
     </div>
   );

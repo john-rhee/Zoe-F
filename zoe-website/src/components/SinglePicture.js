@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import WunderContext from '../contexts/WunderContext';
 import axios from "axios";
+import Button from '@material-ui/core/Button';
 
 function SinglePicture(props) {
 
@@ -54,14 +55,11 @@ function SinglePicture(props) {
             <h2>{title}</h2>
             <h3>{descript}</h3>
 
-            <button onClick={
-                () =>  props.history.push(`/lists/${image_id}/update`,{fileName:name})}>
-                Edit
-            </button>
+            <Button variant="contained" color="primary" onClick={
+               () =>  props.history.push(`/lists/${image_id}/update`,{fileName:name})
+            }>Edit</Button>
 
-            <button onClick={deleteList}>
-                Delete
-            </button>
+            <Button variant="contained" color="primary" onClick={deleteList}>Delete</Button>
 
         </div>    
     )

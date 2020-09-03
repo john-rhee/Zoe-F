@@ -3,6 +3,11 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from "axios";
 import WunderContext from '../contexts/WunderContext';
 
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import MuiButton from "@material-ui/core/Button";
+const Button = styled(MuiButton)(spacing);
+
 
 const Login = props =>{
 
@@ -66,7 +71,7 @@ const Login = props =>{
             
                 <input type="password" name="password" id="password" placeholder="Password" value={state.credentials.password} onChange={handleChange} />
             
-                <button type="submit">Log In</button>
+                <Button my={1} ml={1.5} mr={1.5} variant="contained"  type="submit">Log In</Button>
             
         </form>
 

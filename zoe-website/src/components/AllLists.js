@@ -5,7 +5,11 @@ import {BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import SinglePicture from './SinglePicture';
 import WunderContext from '../contexts/WunderContext';
 import dPicture from '../images/defaultImage.png';
-import Button from '@material-ui/core/Button';
+
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import MuiButton from "@material-ui/core/Button";
+const Button = styled(MuiButton)(spacing);
 
 // http://localhost:5000/
 // https://zoe-backend.herokuapp.com/
@@ -126,15 +130,9 @@ function AllLists(props) {
         
     return (
 
-        <div>
-            <div>
-            <h2>Welcome to Zoe's Album</h2>
-            </div>
-
-            {/* picture */}
-            <div>
-            <h3>Pictures</h3>
-            <h6>Upload picture</h6>
+        <div class="allList">
+            
+            <h2 class="title3">Welcome to Zoe's Album</h2>
 
             <div>
                  {(() => {
@@ -146,7 +144,7 @@ function AllLists(props) {
                         )
                     } else {
                         return (
-                         <div>
+                         <div class="picture">
                             {url.map(pic => (
                                 
                             <div key={pic.id}>
@@ -162,9 +160,10 @@ function AllLists(props) {
                 })()}
             </div>
 
-            <h6>*Upload only jpeg, jpg, png, gif file under size 5MB</h6>
+            <h3 class="title4">Upload pictures here</h3>
+            <h7>*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
             
-            <input type="file" onChange={fileSelectHandler}/>
+            <input class="margin" type="file" onChange={fileSelectHandler}/>
 
             {/* for title */}
             <h6>Title</h6>
@@ -176,9 +175,9 @@ function AllLists(props) {
             <input type="text" name="description" onChange={changeHandler} placeholder="description" value={item.description} />
             {/* for description */}
 
-            <Button variant="contained" color="primary" onClick={fileUploadHandler}>Upload</Button>
+            <Button my={1.5} variant="contained" color="primary" onClick={fileUploadHandler}>Upload</Button>
 
-            </div>
+            
 
         </div>
     )

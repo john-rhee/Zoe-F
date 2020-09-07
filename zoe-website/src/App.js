@@ -9,7 +9,7 @@ import WunderContext from './contexts/WunderContext';
 import PrivateRoute from "./components/PrivateRoute";
 import PictureUpdate from './components/PictureUpdate';
 import dPicture from './images/defaultImage.png';
-import hPicture from './images/zoepic2.jpg';
+import hPicture from './images/bg2.jpg';
 
 import { styled } from "@material-ui/core/styles";
 import { spacing } from "@material-ui/system";
@@ -35,8 +35,6 @@ function App() {
     <Router>
       <div className="App">
 
-          
-         
           <div>
             <div class="dash">
 
@@ -44,19 +42,19 @@ function App() {
 
               <div>
                 <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
-                <Button my={1.5} mx={0.5} variant="contained" onClick ={() => window.location.reload(true)}>Log out</Button>
+                <Button my={1.5} mx={0.5} variant="contained" color="primary" onClick ={() => window.location.reload(true)}>Log out</Button>
                 </Link>
               </div>
               
               <div>
                 <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                <Button my={1.5} mx={0.5} variant="contained">Register</Button>
+                <Button my={1.5} mx={0.5} variant="contained" color="primary">Register</Button>
                 </Link>
               </div>
               
               <div>
                 <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                <Button my={1.5} mx={0.5} variant="contained">Login</Button>
+                <Button my={1.5} mx={0.5} variant="contained" color="primary">Login</Button>
                 </Link>
               </div>
               

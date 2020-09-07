@@ -2,7 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import WunderContext from '../contexts/WunderContext';
 import axios from "axios";
-import Button from '@material-ui/core/Button';
+
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import MuiButton from "@material-ui/core/Button";
+const Button = styled(MuiButton)(spacing);
 
 function SinglePicture(props) {
 
@@ -52,14 +56,18 @@ function SinglePicture(props) {
         <div>
 
             <img src = {image_url}/>
-            <h2>{title}</h2>
-            <h3>{descript}</h3>
+            <h2 class="allList">{title}</h2>
+            <h3 class="allList">{descript}</h3>
 
-            <Button variant="contained" color="primary" onClick={
+          <div class="button2">
+
+            <Button my={1} mx={1} variant="contained" color="primary" onClick={
                () =>  props.history.push(`/lists/${image_id}/update`,{fileName:name})
             }>Edit</Button>
 
-            <Button variant="contained" color="primary" onClick={deleteList}>Delete</Button>
+            <Button my={1} mx={1} variant="contained" color="primary" onClick={deleteList}>Delete</Button>
+
+          </div>
 
         </div>    
     )

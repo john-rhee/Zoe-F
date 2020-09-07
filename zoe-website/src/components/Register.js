@@ -44,19 +44,22 @@ function Register(props) {
     };
 
     return (
-        <div>
+        <div class="registerForm" >
             <form onSubmit={submitForm} >
-            <h2 class="registerForm">Register</h2>
-            
-                
-                <input type="username" name="username" id="username" placeholder="Username" value={user.username} onChange={handleChanges} />
-            
-                <input type="password" name="password" id="password" placeholder="Password" value={user.password} onChange={handleChanges} />
+            <h2>Register</h2>
 
-                {/* added for form validation demo */}
-                <div>{user.message}</div>
+            <div class="registerForm2" >
+            
+            <input class="registerForm3" type="username" name="username" id="username" placeholder="Username" value={user.username} onChange={handleChanges} />
+            
+            <input class="registerForm3" type="password" name="password" id="password" placeholder="Password" value={user.password} onChange={handleChanges} />
+ 
+            </div>
+
+            {/* added for form validation demo */}
+            <div>{user.message}</div>
                 
-                <Button my={1}  variant="contained" type="submit">Submit</Button>
+            <Button my={1}  variant="contained" color="primary" type="submit">Submit</Button>
                 
             </form>
         </div>

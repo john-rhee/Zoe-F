@@ -2,7 +2,11 @@ import React, { useContext, useState, useEffect } from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from "axios";
 import WunderContext from '../contexts/WunderContext';
-import Button from '@material-ui/core/Button';
+
+import { styled } from "@material-ui/core/styles";
+import { spacing } from "@material-ui/system";
+import MuiButton from "@material-ui/core/Button";
+const Button = styled(MuiButton)(spacing);
 
 const PictureUpdate = props => {
 
@@ -97,12 +101,12 @@ const PictureUpdate = props => {
 
 return (
 
-    <div>
+    <div class="allList">
 
-    <h2>Update</h2>
-    <h6>*Upload only jpeg, jpg, png, gif file under size 5MB</h6>
+    <h3 class="title4">Update</h3>
+    <h7 class="title5">*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
             
-            <input type="file" onChange={fileSelectHandler}/>
+            <input class="file" type="file" onChange={fileSelectHandler}/>
 
             {/* for title */}
             <h6>Title</h6>
@@ -112,7 +116,7 @@ return (
             <h6>Description</h6>
             <input type="text" name="description" onChange={changeHandler} placeholder="description" value={item.description} />
            
-            <Button variant="contained" color="primary" onClick={fileUploadHandler}>Update</Button>
+            <Button my={1.5} variant="contained" color="primary" onClick={fileUploadHandler}>Update</Button>
            
 
     </div>

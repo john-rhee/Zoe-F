@@ -55,7 +55,7 @@ function SinglePicture(props) {
 
         <div>
 
-            <img src = {image_url}/>
+            <img class="upImage" src = {image_url}/>
             <h2 class="allList">{title}</h2>
             <h3 class="allList">{descript}</h3>
 

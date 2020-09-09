@@ -40,22 +40,26 @@ function App() {
 
               <h1 class="title" >Zoe's Album</h1>
 
-              <div>
-                <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
-                <Button my={1.5} mx={0.5} variant="contained" color="primary" onClick ={() => window.location.reload(true)}>Log out</Button>
-                </Link>
-              </div>
-              
-              <div>
-                <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                <Button my={1.5} mx={0.5} variant="contained" color="primary">Register</Button>
-                </Link>
-              </div>
-              
-              <div>
-                <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
-                <Button my={1.5} mx={0.5} variant="contained" color="primary">Login</Button>
-                </Link>
+              <div class="navButton">
+
+                <div>
+                  <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
+                  <Button my={3} ml={2} variant="contained" color="primary" onClick ={() => window.location.reload(true)}>Log out</Button>
+                  </Link>
+                </div>
+                
+                <div>
+                  <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
+                  <Button my={3} mx={0.5} variant="contained" color="primary">Register</Button>
+                  </Link>
+                </div>
+                
+                <div>
+                  <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
+                  <Button my={3} mx={0.5} variant="contained" color="primary">Login</Button>
+                  </Link>
+                </div>
+
               </div>
               
             </div>
@@ -63,7 +67,7 @@ function App() {
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
 
-            <img src = {hPicture}/>
+            <img class="mainImage" src = {hPicture}/>
 
         </div>
 

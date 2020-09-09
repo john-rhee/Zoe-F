@@ -139,7 +139,7 @@ function AllLists(props) {
                     if (url == dPicture) {
                         return (
                          <div>
-                             <img src = {url}/>
+                             <img class="mainImage" src = {url}/>
                          </div>
                         )
                     } else {
@@ -161,7 +161,7 @@ function AllLists(props) {
             </div>
 
             <h3 class="title4">Upload pictures here</h3>
-            <h7>*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
+            <h7 class="title5">*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
             
             <input class="margin" type="file" onChange={fileSelectHandler}/>
 

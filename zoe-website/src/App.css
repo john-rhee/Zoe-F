@@ -1,41 +1,11 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
   
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.App {
+  text-align: center;
+  
 }
 
 .logButtonO {
@@ -53,15 +23,16 @@
 .dash {
   display: flex;
   flex-direction: row;
-  margin-left: 8%;
+  padding-left: 2%;
+  
 }
 
 .title {
   align-content: flex-start; 
-  margin-right: 60%;
   margin-top: 1%;
   margin-bottom: 1%;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  
 }
 
 .registerDiv {
@@ -136,3 +107,76 @@
   flex-direction: column;
   align-items: center;
 }
+
+.mainImage {
+
+  width: 100%;
+  
+}
+
+.upImage {
+    
+  max-width: 100%;
+  
+}
+
+.navButton {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 80%;
+  
+}
+
+@media(max-width: 435px){
+
+  .title {
+    height: 20%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    font-size:28px;
+    width:50%;
+    
+   }
+
+  .title3 {
+   font-size:25px
+  }
+
+  .allList {
+    font-size:20px
+   }
+
+   .title4 {
+    font-size:20px
+  }
+
+  .title5 {
+    font-size:13px
+  }
+
+  .dash {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 2%;
+    
+    
+  }
+
+  .navButton {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 40%;
+    
+  }
+
+}
+

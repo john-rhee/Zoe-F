@@ -163,7 +163,7 @@ function AllLists(props) {
             <h3 class="title4">Upload pictures here</h3>
             <h7 class="title5">*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
             
-            <input class="margin" type="file" onChange={fileSelectHandler}/>
+            <input class="file" type="file" onChange={fileSelectHandler}/>
 
             {/* for title */}
             <h6>Title</h6>

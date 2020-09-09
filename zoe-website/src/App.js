@@ -42,19 +42,19 @@ function App() {
 
               <div class="navButton">
 
-                <div>
+                <div class="oButton">
                   <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
                   <Button my={3} ml={2} variant="contained" color="primary" onClick ={() => window.location.reload(true)}>Log out</Button>
                   </Link>
                 </div>
                 
-                <div>
+                <div class="rButton">
                   <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
                   <Button my={3} mx={0.5} variant="contained" color="primary">Register</Button>
                   </Link>
                 </div>
                 
-                <div>
+                <div class="lButton">
                   <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
                   <Button my={3} mx={0.5} variant="contained" color="primary">Login</Button>
                   </Link>

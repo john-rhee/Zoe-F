@@ -44,15 +44,15 @@ function Register(props) {
     };
 
     return (
-        <div class="registerForm" >
+        <div className="registerForm" >
             <form onSubmit={submitForm} >
             <h2>Register</h2>
 
-            <div class="registerForm2" >
+            <div className="registerForm2" >
             
-            <input class="registerForm3" type="username" name="username" id="username" placeholder="Username" value={user.username} onChange={handleChanges} />
+            <input className="registerForm3" type="username" name="username" id="username" placeholder="Username" value={user.username} onChange={handleChanges} />
             
-            <input class="registerForm3" type="password" name="password" id="password" placeholder="Password" value={user.password} onChange={handleChanges} />
+            <input className="registerForm3" type="password" name="password" id="password" placeholder="Password" value={user.password} onChange={handleChanges} />
  
             </div>
 

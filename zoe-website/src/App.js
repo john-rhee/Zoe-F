@@ -36,25 +36,25 @@ function App() {
       <div className="App">
 
           <div>
-            <div class="dash">
+            <div className="dash">
 
-              <h1 class="title" >Zoe's Album</h1>
+              <h1 className="title" >Zoe's Album</h1>
 
-              <div class="navButton">
+              <div className="navButton">
 
-                <div class="oButton">
+                <div className="oButton">
                   <Link to='/login' onClick ={() => localStorage.clear()} style={!localStorage.getItem ('token') ? {display: 'none'} : {color: "#313D5A"}}>
                   <Button my={3} ml={2} variant="contained" color="primary" onClick ={() => window.location.reload(true)}>Log out</Button>
                   </Link>
                 </div>
                 
-                <div class="rButton">
+                <div className="rButton">
                   <Link to='/register' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
                   <Button my={3} mx={0.5} variant="contained" color="primary">Register</Button>
                   </Link>
                 </div>
                 
-                <div class="lButton">
+                <div className="lButton">
                   <Link to='/login' style={!localStorage.getItem('token') ? {color: "#313D5A"} : { display: 'none' }}>
                   <Button my={3} mx={0.5} variant="contained" color="primary">Login</Button>
                   </Link>
@@ -67,7 +67,7 @@ function App() {
             <Route path='/register' component={Register} />
             <Route path='/login' component={Login} />
 
-            <img class="mainImage" src = {hPicture}/>
+            <img className="mainImage" src = {hPicture}/>
 
         </div>
 

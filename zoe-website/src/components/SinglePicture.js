@@ -55,11 +55,11 @@ function SinglePicture(props) {
 
         <div>
 
-            <img class="upImage" src = {image_url}/>
-            <h2 class="allList">{title}</h2>
-            <h3 class="allList">{descript}</h3>
+            <img className="upImage" src = {image_url}/>
+            <h2 className="allList">{title}</h2>
+            <h3 className="allList">{descript}</h3>
 
-          <div class="button2">
+          <div className="button2">
 
             <Button my={1} mx={1} variant="contained" color="primary" onClick={
                () =>  props.history.push(`/lists/${image_id}/update`,{fileName:name})

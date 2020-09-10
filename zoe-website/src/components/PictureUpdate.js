@@ -101,12 +101,12 @@ const PictureUpdate = props => {
 
 return (
 
-    <div class="allList">
+    <div className="allList">
 
-    <h3 class="title4">Update</h3>
-    <h7 class="title5">*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
+    <h3 className="title4">Update</h3>
+    <h7 className="title5">*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
             
-            <input class="file" type="file" onChange={fileSelectHandler}/>
+            <input className="file" type="file" onChange={fileSelectHandler}/>
 
             {/* for title */}
             <h6>Title</h6>

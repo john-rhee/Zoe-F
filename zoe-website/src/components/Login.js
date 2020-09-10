@@ -62,16 +62,16 @@ const Login = props =>{
   }
 
   return (
-    <div class="loginForm">
+    <div className="loginForm">
 
       <form onSubmit={loginEvent}>
         <h2>{state.isLoggedIn ? "Logged In" : "Login"}</h2>
 
-                <div class="loginForm2">
+                <div className="loginForm2">
         
-                <input class="loginForm3" type="text" name="username" id="username" placeholder="Username" value={state.credentials.username} onChange={handleChange} />
+                <input className="loginForm3" type="text" name="username" id="username" placeholder="Username" value={state.credentials.username} onChange={handleChange} />
             
-                <input class="loginForm3" type="password" name="password" id="password" placeholder="Password" value={state.credentials.password} onChange={handleChange} />
+                <input className="loginForm3" type="password" name="password" id="password" placeholder="Password" value={state.credentials.password} onChange={handleChange} />
             
                 </div>
 

@@ -130,21 +130,21 @@ function AllLists(props) {
         
     return (
 
-        <div class="allList">
+        <div className="allList">
             
-            <h2 class="title3">Welcome to Zoe's Album</h2>
+            <h2 className="title3">Welcome to Zoe's Album</h2>
 
             <div>
                  {(() => {
                     if (url == dPicture) {
                         return (
                          <div>
-                             <img class="mainImage" src = {url}/>
+                             <img className="mainImage" src = {url}/>
                          </div>
                         )
                     } else {
                         return (
-                         <div class="picture">
+                         <div className="picture">
                             {url.map(pic => (
                                 
                             <div key={pic.id}>
@@ -160,10 +160,10 @@ function AllLists(props) {
                 })()}
             </div>
 
-            <h3 class="title4">Upload pictures here</h3>
-            <h7 class="title5">*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
+            <h3 className="title4">Upload pictures here</h3>
+            <h7 className="title5">*Upload only jpeg, jpg, png, gif file under size 5MB</h7>
             
-            <input class="file" type="file" onChange={fileSelectHandler}/>
+            <input className="file" type="file" onChange={fileSelectHandler}/>
 
             {/* for title */}
             <h6>Title</h6>
